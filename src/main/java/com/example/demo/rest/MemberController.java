@@ -12,16 +12,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.beans.XMLEncoder;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.StringWriter;
 import java.net.URI;
 import java.util.List;
 
@@ -69,7 +64,7 @@ public class MemberController {
     @GetMapping(value = "/rest/members", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> getXMLMembers() {
         StringBuilder sb = new StringBuilder("<collection>");
-        memberService.getMembers().forEach(m -> sb.append(getXmlString(m)));
+        memberService.findAllOrderByName().forEach(m -> sb.append(getXmlString(m)));
         sb.append("</collection>");
         return ResponseEntity.ok(sb.toString());
     }

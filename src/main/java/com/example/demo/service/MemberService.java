@@ -8,10 +8,12 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -45,14 +47,11 @@ public class MemberService {
     }
 
     public List<Member> findAllOrderByName() {
-        return repository.findAllByNameAsc();
+        return repository.findAll(Sort.by("name"));
     }
 
     public Member getMember(String id) {
-        return repository.findById(id);
-    }
-
-    public List<Member> getMembers() {
-        return repository.findAllByNameAsc();
+        Optional<Member> op = repository.findById(id);
+        return op.orElse(null);
     }
 }
