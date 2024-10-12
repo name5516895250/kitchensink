@@ -1,0 +1,25 @@
+.div-table {
+  display: table;
+  width: auto;
+  border-spacing: 5px;
+}
+.div-table-row {
+  display: table-row;
+  width: auto;
+  clear: both;
+  border-spacing: 5px;
+}
+
+.div-table-col {
+  float: left; /* fix for  buggy browsers */
+  display: table-column;
+  width: 200px;
+}
+
+.error_class{
+   color:red;
+}
+
+.success_class{
+   color:green;
+}

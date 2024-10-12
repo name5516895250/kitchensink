@@ -1,0 +1,44 @@
+<html>
+ <head>
+     <title></title>
+     <link rel="stylesheet" href="css/styles.css">
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+     <script src="js/main.js"></script>
+ </head>
+ <body>
+   <h1>Welcome to Spring Boot</h1>
+   <p>You have successfully run Spring Boot application</p>
+   <h3>Register</h3>
+   <div class="div-table">
+       <div class="div-table-row">
+           <div class="div-table-col" >Name</div>
+           <div  class="div-table-col"><input type="text" id="name_in"></div>
+           <div  class="div-table-col" id="name_err"></div>
+       </div>
+       <div class="div-table-row">
+           <div class="div-table-col" >Email</div>
+           <div  class="div-table-col" ><input type="text" id="email_in"></div>
+           <div  class="div-table-col" id="email_err"></div>
+       </div>
+       <div class="div-table-row">
+           <div class="div-table-col" >Phone #</div>
+           <div  class="div-table-col" ><input type="text" id="phone_in"></div>
+           <div  class="div-table-col" id="phone_err"></div>
+       </div>
+   </div>
+   <div class="div-table">
+       <div class="div-table-row">
+           <div class="div-table-col">
+               <input type="button" value="Register" id="reg_btn">
+           </div>
+           <div class="div-table-col">
+               <div id="valid_msg"></div>
+           </div>
+       </div>
+   </div>
+   <div id="members_container">
+
+   </div>
+
+ </body>
+</html>
