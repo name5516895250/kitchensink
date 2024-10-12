@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      uri: 'mongodb://localhost:27017/members_db'
+      uri: 'mongodb+srv://job5516895250:IbsaN1TycGZnPPXU@cluster0.4ac1p.mongodb.net/member_db?retryWrites=true&w=majority&appName=Cluster0'
