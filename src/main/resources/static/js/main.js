@@ -6,17 +6,15 @@ function getContextPath() {
 function arrayToTable(tableData) {
     const membersColMap = new Map([['Id', 'id'], ['Name', 'name'], ['Email', 'email'], ['Phone #', 'phoneNumber'], ['REST URL', 'restUrl']]);
     var table = $('<table></table>');
- // Create table header
+
     var header = $("<tr></tr>");
     for (const [key, value] of membersColMap) {
         header.append("<th>" + key + "</th>");
     }
-    for (var key in tableData[0]) {
 
-    }
     table.append(header);
 
-    // Add rows to table
+
     for (var i = 0; i < tableData.length; i++) {
         var row = $("<tr></tr>");
         for (const [key, value] of membersColMap) {
@@ -31,7 +29,6 @@ function arrayToTable(tableData) {
     }
     table.append("<tfoot><tr><td rowspan=\"" + membersColMap.size + "\"><a href=\"" + getContextPath() + "/rest/members\">/rest/members</td></tr></tfoot>");
 
-    // Append table to a container
     return table;
 }
 
@@ -50,9 +47,12 @@ function refreshTable() {
 
  function registerMember() {
   var formData = {};
-  formData['name'] = $('#name_in').val();
-  formData['phoneNumber'] = $('#phone_in').val();
-  formData['email'] = $('#email_in').val();
+  const fields = ['name', 'phoneNumber', 'email'];
+  for (var field of fields) {
+    formData[field] = $("#" + field + "_in").val();
+    $("#"+ field + "_err").html('');
+  }
+
   $.ajax({
        url: "/api/member", // Replace with your server-side script URL
        type: "POST",
@@ -65,8 +65,13 @@ function refreshTable() {
        },
        error: function(xhr, status, error) {
             var err = JSON.parse(xhr.responseText);
-            if (err.validationError != null || err.violations != null) {
-                $('#valid_msg').html("<span class=\"error_class\">Not Registered!</span>");
+            if (err.validationError != null) {
+                $('#valid_msg').html("<span class=\"error_class\">" + err.validationError + "</span>");
+            }
+            if (err.violations != null) {
+                for(var efield in err.violations) {
+                    $('#' + efield + "_err").html("<span class=\"error_class\">" + err.violations[efield] + "</span>");
+               }
             }
        }
      });
