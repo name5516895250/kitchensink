@@ -39,8 +39,7 @@ function refreshTable() {
     url: "/api/members",
     dataType: 'json',
     success: function (data) {
-        $('#members_container').empty();
-        $('#members_container').append(arrayToTable(data));
+        $('#members_container').html(arrayToTable(data));
     }
  });
  }
